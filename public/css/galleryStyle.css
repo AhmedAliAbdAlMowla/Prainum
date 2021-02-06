@@ -1,0 +1,989 @@
+/*****************************************
+Table Of Contents:
+
+01. General Styles
+02. Preloader
+03. Navigation
+******************************************/
+
+/*****************************************
+Colors:
+- Backgrounds - turquoise #00bfd8
+- Backgrounds - blue #0079f9
+- Backgrounds - light gray #f7fcfd
+- Buttons, bullets, icons, links - turquoise #00bfd8
+- Cards border, inputs border - light gray #c4d8dc
+- Text headers, navbar links - black #393939
+- Text body - black #626262
+******************************************/
+
+/******************************/
+/*     01. General Styles     */
+/******************************/
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body,
+p {
+  color: #626262;
+  font: 400 0.875rem/1.375rem "Raleway", sans-serif;
+}
+
+.p-large {
+  font: 400 1rem/1.5rem "Raleway", sans-serif;
+}
+
+.p-small {
+  font: 400 0.75rem/1.25rem "Raleway", sans-serif;
+}
+
+.p-heading {
+  margin-bottom: 3.875rem;
+}
+
+.li-space-lg li {
+  margin-bottom: 0.25rem;
+}
+
+.indent {
+  padding-left: 1.25rem;
+}
+
+h1 {
+  color: #393939;
+  font: 700 3rem/3.5rem "Raleway", sans-serif;
+}
+
+h2 {
+  color: #393939;
+  font: 700 2.25rem/2.75rem "Raleway", sans-serif;
+}
+
+h3 {
+  color: #393939;
+  font: 700 1.75rem/2rem "Raleway", sans-serif;
+}
+
+h4 {
+  color: #393939;
+  font: 700 1.375rem/1.875rem "Raleway", sans-serif;
+}
+
+h5 {
+  color: #393939;
+  font: 700 1.125rem/1.625rem "Raleway", sans-serif;
+}
+
+h6 {
+  color: #393939;
+  font: 700 1rem/1.5rem "Raleway", sans-serif;
+}
+
+a {
+  color: #626262;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #626262;
+  text-decoration: underline;
+}
+
+a.turquoise {
+  color: #00bfd8;
+}
+
+a.white {
+  color: #fff;
+}
+
+.testimonial-text {
+  font: italic 400 1rem/1.5rem "Raleway", sans-serif;
+}
+
+.testimonial-author {
+  font: 700 1rem/1.5rem "Raleway", sans-serif;
+}
+
+.turquoise {
+  color: #00bfd8;
+}
+
+.btn-solid-reg {
+  display: inline-block;
+  padding: 1.1875rem 2.125rem 1.1875rem 2.125rem;
+  border: 0.125rem solid #00bfd8;
+  border-radius: 2rem;
+  background-color: #00bfd8;
+  color: #fff;
+  font: 700 0.75rem/0 "Raleway", sans-serif;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-solid-reg:hover {
+  background-color: transparent;
+  color: #00bfd8;
+  text-decoration: none;
+}
+
+.btn-solid-lg {
+  display: inline-block;
+  padding: 1.375rem 2.625rem 1.375rem 2.625rem;
+  border: 0.125rem solid #00bfd8;
+  border-radius: 2rem;
+  background-color: #00bfd8;
+  color: #fff;
+  font: 700 0.75rem/0 "Raleway", sans-serif;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-solid-lg:hover {
+  background-color: transparent;
+  color: #00bfd8;
+  text-decoration: none;
+}
+
+.btn-outline-reg {
+  display: inline-block;
+  padding: 1.1875rem 2.125rem 1.1875rem 2.125rem;
+  border: 0.125rem solid #00bfd8;
+  border-radius: 2rem;
+  background-color: transparent;
+  color: #00bfd8;
+  font: 700 0.75rem/0 "Raleway", sans-serif;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-outline-reg:hover {
+  background-color: #00bfd8;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-outline-lg {
+  display: inline-block;
+  padding: 1.375rem 2.625rem 1.375rem 2.625rem;
+  border: 0.125rem solid #00bfd8;
+  border-radius: 2rem;
+  background-color: transparent;
+  color: #00bfd8;
+  font: 700 0.75rem/0 "Raleway", sans-serif;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-outline-lg:hover {
+  background-color: #00bfd8;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-outline-sm {
+  display: inline-block;
+  padding: 1rem 1.625rem 0.875rem 1.625rem;
+  border: 0.125rem solid #00bfd8;
+  border-radius: 2rem;
+  background-color: transparent;
+  color: #00bfd8;
+  font: 700 0.625rem/0 "Raleway", sans-serif;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-outline-sm:hover {
+  background-color: #00bfd8;
+  color: #fff;
+  text-decoration: none;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+
+.form-group.has-error.has-danger {
+  margin-bottom: 0.625rem;
+}
+
+.form-group.has-error.has-danger .help-block.with-errors ul {
+  margin-top: 0.375rem;
+}
+
+.label-control {
+  position: absolute;
+  top: 0.87rem;
+  left: 1.375rem;
+  color: #626262;
+  opacity: 1;
+  font: 400 0.875rem/1.375rem "Raleway", sans-serif;
+  cursor: text;
+  transition: all 0.2s ease;
+}
+
+/* IE10+ hack to solve lower label text position compared to the rest of the browsers */
+@media screen and (-ms-high-contrast: active),
+screen and (-ms-high-contrast: none) {
+  .label-control {
+    top: 0.9375rem;
+  }
+}
+
+.form-control-input:focus+.label-control,
+.form-control-input.notEmpty+.label-control,
+.form-control-textarea:focus+.label-control,
+.form-control-textarea.notEmpty+.label-control {
+  top: 0.125rem;
+  opacity: 1;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.form-control-input,
+.form-control-select {
+  display: block;
+  /* needed for proper display of the label in Firefox, IE, Edge */
+  width: 100%;
+  padding-top: 1.0625rem;
+  padding-bottom: 0.0625rem;
+  padding-left: 1.3125rem;
+  border: 1px solid #c4d8dc;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  color: #626262;
+  font: 400 0.875rem/1.875rem "Raleway", sans-serif;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+  /* removes inner shadow on form inputs on ios safari */
+}
+
+.form-control-select {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  height: 3rem;
+}
+
+/* IE10+ hack to solve lower label text position compared to the rest of the browsers */
+@media screen and (-ms-high-contrast: active),
+screen and (-ms-high-contrast: none) {
+  .form-control-input {
+    padding-top: 1.25rem;
+    padding-bottom: 0.75rem;
+    line-height: 1.75rem;
+  }
+
+  .form-control-select {
+    padding-top: 0.875rem;
+    padding-bottom: 0.75rem;
+    height: 3.125rem;
+    line-height: 2.125rem;
+  }
+}
+
+select {
+  /* you should keep these first rules in place to maintain cross-browser behavior */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  background-image: url("../images/down-arrow.png");
+  background-position: 96% 50%;
+  background-repeat: no-repeat;
+  outline: none;
+}
+
+select::-ms-expand {
+  display: none;
+  /* removes the ugly default down arrow on select form field in IE11 */
+}
+
+.form-control-textarea {
+  display: block;
+  /* used to eliminate a bottom gap difference between Chrome and IE/FF */
+  width: 100%;
+  height: 8rem;
+  /* used instead of html rows to normalize height between Chrome and IE/FF */
+  padding-top: 1.25rem;
+  padding-left: 1.3125rem;
+  border: 1px solid #c4d8dc;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  color: #626262;
+  font: 400 0.875rem/1.75rem "Raleway", sans-serif;
+  transition: all 0.2s;
+}
+
+.form-control-input:focus,
+.form-control-select:focus,
+.form-control-textarea:focus {
+  border: 1px solid #a1a1a1;
+  outline: none;
+  /* Removes blue border on focus */
+}
+
+.form-control-input:hover,
+.form-control-select:hover,
+.form-control-textarea:hover {
+  border: 1px solid #a1a1a1;
+}
+
+.checkbox {
+  font: 400 0.75rem/1.25rem "Raleway", sans-serif;
+}
+
+input[type="checkbox"] {
+  vertical-align: -15%;
+  margin-right: 0.375rem;
+}
+
+/* IE10+ hack to raise checkbox field position compared to the rest of the browsers */
+@media screen and (-ms-high-contrast: active),
+screen and (-ms-high-contrast: none) {
+  input[type="checkbox"] {
+    vertical-align: -9%;
+  }
+}
+
+.form-control-submit-button {
+  display: inline-block;
+  width: 100%;
+  height: 3.125rem;
+  border: 1px solid #00bfd8;
+  border-radius: 1.5rem;
+  background-color: #00bfd8;
+  color: #fff;
+  font: 700 0.75rem/1.75rem "Raleway", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.form-control-submit-button:hover {
+  background-color: transparent;
+  color: #00bfd8;
+}
+
+/* Form Success And Error Message Formatting */
+#rmsgSubmit.h3.text-center.tada.animated,
+#cmsgSubmit.h3.text-center.tada.animated,
+#pmsgSubmit.h3.text-center.tada.animated,
+#rmsgSubmit.h3.text-center,
+#cmsgSubmit.h3.text-center,
+#pmsgSubmit.h3.text-center {
+  display: block;
+  margin-bottom: 0;
+  color: #626262;
+  font: 400 1.125rem/1rem "Raleway", sans-serif;
+}
+
+.help-block.with-errors .list-unstyled {
+  color: #626262;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  text-align: left;
+}
+
+.help-block.with-errors ul {
+  margin-bottom: 0;
+}
+
+/* end of form success and error message formatting */
+
+/* Form Success And Error Message Animation - Animate.css */
+@-webkit-keyframes tada {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    -ms-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    -ms-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    -ms-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    -ms-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    -ms-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes tada {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    -ms-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    -ms-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    -ms-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    -ms-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    -ms-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.tada {
+  -webkit-animation-name: tada;
+  animation-name: tada;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+/* end of form success and error message animation - Animate.css */
+
+/* Fade-move Animation For Lightbox - Magnific Popup */
+/* at start */
+.my-mfp-slide-bottom .zoom-anim-dialog {
+  opacity: 0;
+  transition: all 0.2s ease-out;
+  -webkit-transform: translateY(-1.25rem) perspective(37.5rem) rotateX(10deg);
+  -ms-transform: translateY(-1.25rem) perspective(37.5rem) rotateX(10deg);
+  transform: translateY(-1.25rem) perspective(37.5rem) rotateX(10deg);
+}
+
+/* animate in */
+.my-mfp-slide-bottom.mfp-ready .zoom-anim-dialog {
+  opacity: 1;
+  -webkit-transform: translateY(0) perspective(37.5rem) rotateX(0);
+  -ms-transform: translateY(0) perspective(37.5rem) rotateX(0);
+  transform: translateY(0) perspective(37.5rem) rotateX(0);
+}
+
+/* animate out */
+.my-mfp-slide-bottom.mfp-removing .zoom-anim-dialog {
+  opacity: 0;
+  -webkit-transform: translateY(-0.625rem) perspective(37.5rem) rotateX(10deg);
+  -ms-transform: translateY(-0.625rem) perspective(37.5rem) rotateX(10deg);
+  transform: translateY(-0.625rem) perspective(37.5rem) rotateX(10deg);
+}
+
+/* dark overlay, start state */
+.my-mfp-slide-bottom.mfp-bg {
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+/* animate in */
+.my-mfp-slide-bottom.mfp-ready.mfp-bg {
+  opacity: 0.8;
+}
+
+/* animate out */
+.my-mfp-slide-bottom.mfp-removing.mfp-bg {
+  opacity: 0;
+}
+
+/* end of fade-move animation for lightbox - magnific popup */
+
+/* Fade Animation For Image Slider - Magnific Popup */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation: fadeIn 0.6s;
+  animation: fadeIn 0.6s;
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation: fadeOut 0.8s;
+  animation: fadeOut 0.8s;
+}
+
+/* end of fade animation for image slider - magnific popup */
+
+/*************************/
+/*     02. Preloader     */
+/*************************/
+.spinner-wrapper {
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  /* centers the loading animation vertically one the screen */
+  left: 50%;
+  /* centers the loading animation horizontally one the screen */
+  width: 3.75rem;
+  height: 1.25rem;
+  margin: -0.625rem 0 0 -1.875rem;
+  /* is width and height divided by two */
+  text-align: center;
+}
+
+.spinner>div {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100%;
+  background-color: #00bfd8;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+/**************************/
+/*     03. Navigation     */
+/**************************/
+.navbar-custom {
+  background-color: #fff;
+  box-shadow: 0 0.0625rem 0.375rem 0 #00bfd8;
+  font: 600 0.875rem/0.875rem "Raleway", sans-serif;
+  transition: all 0.2s;
+}
+
+/* .navbar-custom .navbar-brand.logo-image img {
+    width: 7.4375rem;
+	height: 2rem;
+} */
+
+.navbar-custom .navbar-brand {
+  font: 600 2rem/1.5rem "Raleway", sans-serif;
+  color: #057bff;
+  text-decoration: none;
+}
+
+.navbar-custom .navbar-brand:hover {
+  font: 600 2rem/1.5rem "Raleway", sans-serif;
+  color: #057bff;
+  text-decoration: none;
+}
+
+.navbar-custom .navbar-nav {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.navbar-custom .nav-item .nav-link {
+  padding: 0.625rem 0.75rem 0.625rem 0.75rem;
+  color: #057bff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.navbar-custom .nav-item .sign-up {
+  padding: 0.625rem 0.75rem 0.625rem 0.75rem;
+  color: #393939;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.navbar-custom .nav-item .nav-link:hover,
+.navbar-custom .nav-item .nav-link.active {
+  color: #00bfd8;
+}
+
+.navbar-custom .social-icons {
+  display: none;
+}
+
+.navbar-custom .navbar-toggler {
+  border: none;
+  color: #393939;
+  font-size: 2rem;
+}
+
+.navbar-custom button[aria-expanded="false"] .navbar-toggler-awesome.fas.fa-times {
+  display: none;
+}
+
+.navbar-custom button[aria-expanded="false"] .navbar-toggler-awesome.fas.fa-bars {
+  display: inline-block;
+}
+
+.navbar-custom button[aria-expanded="true"] .navbar-toggler-awesome.fas.fa-bars {
+  display: none;
+}
+
+.navbar-custom button[aria-expanded="true"] .navbar-toggler-awesome.fas.fa-times {
+  display: inline-block;
+  margin-right: 0.125rem;
+}
+
+/* pop upload form  */
+#uploadFormId {
+  display: none;
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  width: auto;
+  /* border-radius: 2%; */
+  border: 2px solid #2d6bdd;
+  z-index: 9;
+  transform: translate(-50%, -50%);
+}
+
+/* pop  link form  */
+
+#link_pop {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  width: auto;
+  /* border-radius: 2%; */
+  border: 3px solid #2d6bdd;
+  z-index: 9;
+  transform: translate(-50%, -50%);
+}
+
+/* pop qr form  */
+
+#Qr_pop {
+  display: none;
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  width: 200px;
+  /* border-radius: 2%; */
+  border: 2px solid #2d6bdd;
+  z-index: 9;
+  transform: translate(-50%, -50%);
+}
+
+/*  copy toast  */
+#snackbar {
+  visibility: hidden;
+  /* Hidden by default. Visible on click */
+  min-width: 250px;
+  /* Set a default minimum width */
+  margin-left: -125px;
+  /* Divide value of min-width by 2 */
+  background-color: #4caf50;
+  /* Black background color */
+  color: #fff;
+  /* White text color */
+  text-align: center;
+  /* Centered text */
+  border-radius: 2px;
+  /* Rounded borders */
+  padding: 16px;
+  /* Padding */
+  position: fixed;
+  /* Sit on top of the screen */
+  z-index: 1;
+  /* Add a z-index if needed */
+  left: 50%;
+  /* Center the snackbar */
+  bottom: 30px;
+  /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible;
+  /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+/*  some play  */
+
+.form-control {
+  color: #057bff;
+}
+
+/**********************************/
+/*     18. Back To Top Button     */
+/**********************************/
+a.back-to-top {
+  position: fixed;
+  z-index: 999;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: none;
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 1.875rem;
+  background: #00bfd8 url("../images/up-arrow.png") no-repeat center 47%;
+  background-size: 1.125rem 1.125rem;
+  text-indent: -9999px;
+}
+
+a:hover.back-to-top {
+  background-color: #00a7bd;
+}
+
+/* upload button */
+.uploadDiv {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonUpload {
+  position: fixed;
+  z-index: 999;
+  left: 1rem;
+  bottom: 3rem;
+
+  width: 60px;
+  height: 60px;
+  border-radius: 1.875rem;
+
+  background-size: 1.125rem 1.125rem;
+  /* text-indent: -9999px; */
+
+  /* min-width: 300px;
+  min-height: 60px; */
+  font-family: "Nunito", sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4128cf;
+  /* background: linear-gradient(
+    90deg,
+    rgba(129, 230, 217, 1) 0%,
+    rgba(79, 209, 197, 1) 100%
+  ); */
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  /* position: relative; */
+  padding: 10px;
+}
+
+.buttonUpload:hover,
+.buttonUpload:focus {
+  color: #313133;
+  /* transform: translateY(-6px); */
+}
+
+.buttonUpload:hover::before,
+.buttonUpload:focus::before {
+  opacity: 1;
+}
+
+.buttonUpload::after {
+  content: "";
+
+  width: 50px;
+  height: 50px;
+
+  border-radius: 100%;
+  border: 6px solid #00ffcb;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+.buttonUpload:hover::after,
+.buttonUpload:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+      shrink-to-fit=no" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Create a stylish landing page for your business startup and get
+      leads for the offered services with this HTML landing page template." />
+  <meta name="author" content="Pranium" />
+
+  <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+  <meta property="og:site_name" content="" />
+  <!-- website name -->
+  <meta property="og:site" content="" />
+  <!-- website link -->
+  <meta property="og:title" content="" />
+  <!-- title shown in the actual shared post -->
+  <meta property="og:description" content="" />
+  <!-- description shown in the actual shared post -->
+  <meta property="og:image" content="" />
+  <!-- image link, make sure it's jpg -->
+  <meta property="og:url" content="" />
+  <!-- where do you want your post to link to -->
+  <meta property="og:type" content="article" />
+
+  <!-- Website Title -->
+  <title>Pranium</title>
+  <!-- Styles -->
+
+  <!--Fontawesome CDN-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext"
+    rel="stylesheet" />
+  <link href="/css/bootstrap.css" rel="stylesheet" />
+  <link href="/css/magnific-popup.css" rel="stylesheet" />
+  <link href="/css/galleryStyle.css" rel="stylesheet" />
+  <link href="/css/qr.css" rel="stylesheet" />
+  <style>
+    img {
+      width: auto;
+      height: 130px;
+    }
+    
+  </style>
+  <!-- Favicon  -->
+  <link rel="icon" href="/images/favicon.png" />
+
+  <!-- Preloader -->
+  <div class="spinner-wrapper">
+    <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+  </div>
+  <!-- end of preloader -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  
+</head>
+
+<body data-spy="scroll" data-target=".fixed-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+
+
+    <a class="navbar-brand prainum-text" href="#">
+      <img src="/images/favicon.png" class="d-inline-block align-top" alt=""
+        style="width: 30px !important ; height: 30px !important" />
+      rainum
+    </a>
+    <!-- Mobile Menu Toggle Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-awesome fas fa-bars"></span>
+      <span class="navbar-toggler-awesome fas fa-times"></span>
+    </button>
+    <!-- end of mobile menu toggle button -->
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/user/signOut">Sign
+            out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- end of navbar -->
+  <!-- end of navigation -->
+
+
+  <!--  Gallery body -->
+
+  <div class="container" id="main" style="margin-top: 50px">
+    <div class="row">
+      <div class="col-md-6 m-auto">
+
+
+        <!--                                       link pop -->
+        <div id="link_pop" class="card card-body mb-3" style="display:none;">
+
+          <input type="text" class="form-control" id="url" width: 100%;>
+          <div style="padding-top: 10px; padding-left: 20px;">
+            <button class="btn btn-success" onclick="copy()" style="
+         display: inline !important;
+         padding-top: 2px;
+         margin: 0 !important;
+         ">
+              <i class="far fa-copy"></i>copy
+            </button>
+
+            <button type="button" class="btn btn-primary"
+              onclick="document.getElementById('link_pop').style.display = 'none' " style="
+         display: inline !important;
+         padding-top: 2px;
+         margin: 0 !important;
+         ">
+              <i class="fas fa-times"></i> close
+            </button>
+          </div>
+        </div>
+
+        <!--                                      end link pop -->
+
+        <!--                                      qr pop -->
+
+        <div id="Qr_pop" class="card  ">
+
+          <div id="qrcode" style="margin: 0 auto; justify-content: center; display: flex; border: 1px solid #2d6bdd;">
+          </div>
+
+          <div style="padding-top: 10px;display: flex;
+          justify-content: center;
+          align-items: center; ">
+            <button class="btn btn-success" onclick="qrDownload()" style="width: 91px; font-size: 10px; "
+              title="Download"> <i class="fas fa-download"></i>Download</button>
+            <button class="btn btn-primary" onclick="document.getElementById('Qr_pop').style.display = 'none'"
+              style="width: 91px; font-size: 10px; margin-left: 9px;" title="close"><i class="fas fa-times"></i>
+              close</button>
+          </div>
+        </div>
+        <!--                                                end qr pop -->
+
+
+        <!--   upload button       -->
+        <div class="uploadDiv" onclick="document.getElementById('uploadFormId').style.display = 'block' ">
+          <button class="buttonUpload"><i class="fas fa-upload" style="color: white;"></i></button>
+        </div>
+        <!--    End upload button       -->
+
+        <!--                                                upload form -->
+        <div class="card" id="uploadFormId" style="display: none;">
+
+          <h1 class="text-center display-4 my-4">File Uploads</h1>
+          <form action="/file/upload" method="POST" enctype="multipart/form-data">
+            <div class="custom-file mb-3">
+              <input type="file" name="file" id="file" class="custom-file-input" onchange="readSingleFile(this.files)"
+                required />
+              <label for="file" class="custom-file-label" id="file-label">Choose
+                File</label>
+            </div>
+
+            <div style="text-align: center">
+              <button type="submit" class="btn btn-success" style="width:40%; font-size: 13px;"><i class="fas fa-upload"
+                  style="color: white; "></i> Upload</button>
+              <button class="btn btn-primary" onclick="document.getElementById('uploadFormId').style.display =  'none' "
+                style="width: 40%; font-size: 13px;" title="close"><i class="fas fa-times"></i>
+                Close</button>
+            </div>
+
+          </form>
+        </div>
+        <!--                                                      end upload form -->
+
+
+        <!--  -->
+        <h1 class="text-center display-4 my-4">Pranium Gallery</h1>
+        <hr />
+      </div>
+    </div>
+
+
+   
+
+    <div class="row">
+     
+
+      <% if(files){ %> <% for( let i=0 ;i<files.length;i++) { %>
+
+      <div class="col-lg-3 col-md-4 col-sm-6" style="padding-top: 17px
+              !important ;">
+        <div class="card" style="padding: 10px;">
+
+
+          <% if(files[i].isImage) { %>
+          <div class="card" style="padding: 10px;">
+            <%= files[i]._id%>
+            <img src="/file/<%= files[i]._id%>" alt="" />
+
+            <div style="text-align: center">
+              <p style="text-align: center; font-size: 20px; color:
+                            rgb(4, 8, 4)">
+                <%=files[i].filename.substr(files[i].filename.length-12,files[i].filename.length)%>
+              </p>
+            </div>
+
+            <% } else { %>
+            <div class="card" style="padding: 10px;">
+              <img src="/images/unNoneCheckFile.svg" alt="" />
+              <div style="text-align: center">
+                <p style="text-align: center; font-size: 30px;
+                                  color: rgb(4, 8, 4)">
+                  <%=files[i].filename.substr(files[i].filename.length-12,files[i].filename.length)%>
+                </p>
+              </div>
+
+              <% } %>
+              <div>
+
+                <!-- download -->
+                <form action="/file/dow/<%= files[i]._id %>" method="get" style="
+                                      display: inline !important;
+                                      margin: 0;
+                                      padding: 0;
+                                      width: 30%;
+                                      ">
+
+                  <button type="submit" title="Download" class="btn" style="display: inline
+                                        !important;
+                                        width: 25%;
+                                        margin: 0 !important;">
+                    <i class="fas fa-download"></i>
+                  </button>
+                </form>
+                <!-- end download -->
+                <!--  link  -->
+                <button class="btn" onclick="pop('<%=i%>','<%= user%>','<%=files[i]._id %>')" title="Get link" style="
+                                      display: inline !important;
+                                      width: 25%;
+                                      margin: 0 !important;
+                                      " title="Get Link">
+                  <i class="fas fa-link"></i>
+                </button>
+                <!-- end link -->
+
+                <!--  delete-->
+                <form action="/file/del/<%= files[i]._id %>" method="post" style="
+                                      display: inline !important;
+                                      margin: 0;
+                                      padding: 0;
+                                      width: 30%;
+                                      ">
+                  <button class="btn" title="Delete" style="display:
+                                        inline !important;
+                                        width: 15%;
+                                        margin: 0 !important;">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </form>
+                <!-- end delete -->
+                <!-- qrcode -->
+                <button class="btn" onclick="qrGen('<%=i%>','<%= user%>','<%= files[i]._id %>')" title="QrCode" style="display:
+                                      inline !important;
+                                      width: 25%;
+                                      margin: 0 !important;"><i class="fas
+                                        fa-qrcode"></i></button>
+                <!-- end qrcode -->
+
+                <!-- share state switch -->
+                <div style="margin: 0 auto; display: flex;
+                                      flex-direction: row;
+                                      flex-wrap: wrap;
+                                      justify-content: center;
+                                      align-items: center;">
+                  <label style="font-size: 15px; color:
+                                        black ;"> File Share: </label>
+
+                  <label class="switch">
+
+                    <% if(files[i].shareState) { %>
+
+                    <input id="share" type="checkbox" onclick="ShareSwitch('<%=i%>','<%=files[i]._id %>')" checked />
+                    <% } else { %>
+                    <input id="share" type="checkbox" onclick="ShareSwitch('<%=i%>','<%=files[i]._id %>')" />
+                    <% } %>
+
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+              <!-- end share state switch -->
+            </div>
+          </div>
+        </div>
+
+        <!-- </div> -->
+        <% } %> <% } else { %>
+        <divstyle="margin: 0 auto; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;
+          align-items: center;">
+          <p>No files to show</p>
+      </div>
+      <% } %>
+    </div>
+
+
+    <div id="snackbar">Share link is
+      copyed.(^_^)</div>
+    <!-- End Gallery body -->
+
+  </div>
+
+    <!-- Scripts -->
+    <script src="/js/jquery.min.js"></script>
+    <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="/js/popper.min.js"></script>
+    <!-- Popper tooltip library for Bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Bootstrap framework -->
+    <script src="/js/jquery.easing.min.js"></script>
+    <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="/js/swiper.min.js"></script>
+    <!-- Swiper for image and text sliders -->
+    <script src="/js/jquery.magnific-popup.js"></script>
+    <!-- Magnific Popup for lightboxes -->
+    <script src="/js/validator.min.js"></script>
+    <!-- Validator.js - Bootstrap plugin that validates forms -->
+
+    <!-- qr code -->
+    <script type="text/javascript" src="/js/qrcode.js"></script>
+   <!-- axios cdn -->
+    
+     <!-- gallery script -->
+    <script src="/js/gallery.js"></script>
+    
+
+   </script>
+
+</body>
+
+</html>

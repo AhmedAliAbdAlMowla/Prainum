@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+      shrink-to-fit=no" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Create a stylish landing page for your business startup and get
+      leads for the offered services with this HTML landing page template." />
+  <meta name="author" content="Pranium" />
+
+  <title>Login Page</title>
+  <!-- Styles -->
+
+ 
+  <!--Fontawesome CDN-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext"
+    rel="stylesheet" />
+  <link href="/css/bootstrap.css" rel="stylesheet" />
+  <link href="/css/magnific-popup.css" rel="stylesheet" />
+  <link href="/css/fontawesome-all.css" rel="stylesheet">
+  <link href="/css/swiper.css" rel="stylesheet" />
+  <link href="/css/magnific-popup.css" rel="stylesheet" />
+
+ <!--Custom styles-->
+ <link rel="stylesheet" type="text/css" href="/css/login_stylesheet.css" />
+
+  <!-- Popup Form stylesheet-->
+  <link rel="stylesheet" href="/css/forgotPopupForm.css" />
+  <link rel="stylesheet" href="/css/loader.css" />
+
+  <!-- Favicon  -->
+  <link rel="icon" href="/images/favicon.png" />
+
+  <!-- Preloader -->
+  <div class="spinner-wrapper">
+    <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+  </div>
+  <!-- end of preloader -->
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+
+
+    <a class="navbar-brand prainum-text" href="#">
+      <img src="/images/favicon.png" class="d-inline-block align-top" alt=""
+        style="width: 30px !important ; height: 30px !important" />
+      rainum
+    </a>
+    <!-- Mobile Menu Toggle Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-awesome fas fa-bars"></span>
+      <span class="navbar-toggler-awesome fas fa-times"></span>
+    </button>
+    <!-- end of mobile menu toggle button -->
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- end of navbar -->
+  <!-- end of navigation -->
+
+
+
+
+  <% if(state) { %>
+  <a id="checkResend"></a>
+  <% } %>
+  <div class="container">
+    <div class="d-flex justify-content-center h-100">
+      <div class="card">
+        <div class="card-header">
+          <h3>Sign In</h3>
+          <div class="d-flex justify-content-end social_icon">
+            <span><i class="fab fa-facebook-square"></i></span>
+            <span><i class="fab fa-google-plus-square"></i></span>
+            <span><i class="fab fa-twitter-square"></i></span>
+          </div>
+        </div>
+        <div class="card-body">
+          <form action="/user/signIn" method="POST">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" id="username" name="username" value="<%=user%>" class="form-control"
+                placeholder="username" required />
+            </div>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input type="password" name="password" class="form-control" placeholder="password" required />
+            </div>
+            <div class="row align-items-center remember">
+              <input type="checkbox" />Remember Me
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Login" class="btn float-right login_btn" />
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-center links">
+            Don't have an account?<a href="/signUp" style="color:#142aee;text-decoration: none; ">Sign Up</a>
+          </div>
+
+          <% if(error == "IncorrectPassword") { %>
+          <div class="d-flex justify-content-center">
+            <a onclick="openForm()" href="#" style="color:#142aee;text-decoration: none; ">Forgot your password?</a>
+          </div>
+          <% } %>
+        </div>
+        <p style="color: red; text-align: center"><%=error%></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- forget password form  -->
+  <div class="form-popup  " id="myForm">
+    <form name="form1" action="/forgot/phone" method="GET" class="form-container">
+      We will sent verfication code to:
+      <br />
+      <input type="radio" name="collection" value="yes" style="text-align: center" required checked />
+      <i class="fas fa-mobile-alt"></i>
+      Phone
+      <input type="radio" name="collection" value="no" required /><i class="fas fa-envelope-open-text"></i>Email
+      <br />
+      <input id="btnSubmit" class="btn" type="submit" value="Send" onclick="loader()" />
+      <button type="button" class="btn cancel" onclick="closeForm()">
+        Close
+      </button>
+    </form>
+  </div>
+
+  <div id="loader"></div>
+  <!--  end change password form  -->
+
+
+
+  <!-- Scripts -->
+  <!-- jQuery for Bootstrap's JavaScript plugins -->
+  <script src="/js/jquery.min.js"></script>
+  <!-- Popper tooltip library for Bootstrap -->
+  <script src="/js/popper.min.js"></script>
+  <!-- Bootstrap framework -->
+  <script src="/js/bootstrap.min.js"></script>
+  <!-- jQuery Easing for smooth scrolling between anchors -->
+  <script src="/js/jquery.easing.min.js"></script>
+  <!-- Magnific Popup for lightboxes -->
+  <script src="/js/jquery.magnific-popup.js"></script>
+  <!-- Swiper for image and text sliders -->
+  <script src="/js/swiper.min.js"></script>
+
+  <!-- Validator.js - Bootstrap plugin that validates forms -->
+  <script src="/js/validator.min.js"></script>
+  <script src="/js/scripts.js"></script>
+  <!--  loader script -->
+  <script>
+    function loader() {
+      document.getElementById("loader").style.display = "block";
+    }
+  </script>
+  <!-- popupForm js -->
+  <script>
+    if (document.getElementById("checkResend") && document.getElementById("checkResend").text === "") {
+      document.getElementById("myForm").style.display = "block";
+    }
+  </script>
+  <script src="/js/popupForm.js"></script>
+</body>
+
+</html>

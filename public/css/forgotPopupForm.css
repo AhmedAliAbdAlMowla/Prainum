@@ -1,0 +1,80 @@
+
+
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+.form-popup {
+  display: none;
+  position: fixed;
+  /* top: 250px;
+ left: auto;
+   */
+   left: 50%;
+   top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  border: 1px solid #2d6bdd;
+  border-radius: 5%;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  padding: 10px;
+  top: 100px;
+  /* left: 35%; */
+  color: black;
+  border-radius: 5%;
+  text-align: center;
+  background-color: white;
+}
+
+.form-container input[type="radio"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  margin-top: 10px;
+  background-color: #4caf50;
+  /* color: white;
+    padding: 20px 20px; */
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  width: 60px;
+  height: 30px;
+  /*
+    opacity: 0.8; */
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover,
+.open-button:hover {
+  opacity: 1;
+}
