@@ -1,14 +1,4 @@
-const qrGen = (i, user, fileId) => {
-  document.getElementById("qrcode").innerHTML = "";
-  let location = window.location.href;
-  let qrText =
-    location.substr(0, location.length - 13) +
-    "/file/share/" +
-    user +
-    "/" +
-    fileId;
-  console.log(qrText);
-
+const qrGen = (i, qrText) => {
   const options = {
     // ====== Basic
     text: qrText,
@@ -29,9 +19,9 @@ const qrGen = (i, user, fileId) => {
   ShareSwitch(i, fileId);
 };
 const qrDownload = () => {
-  let src = document.getElementById("qrcode").getElementsByTagName("img")[0]
-    .src;
-  console.log(src);
+  let src = document
+    .getElementById("qrcode")
+    .getElementsByTagName("img")[0].src;
   var link = document.createElement("a");
   document.body.appendChild(link);
   link.setAttribute("href", src);
@@ -39,19 +29,43 @@ const qrDownload = () => {
   link.click();
 };
 
-function pop(i, user, fileId) {
+function pop(i, fileUrl) {
   document.getElementById("link_pop").style.display = "block";
 
-  let urData = `/file/share/${user}/${fileId}`;
-
-  let location = window.location.href;
-  urData = location.substr(0, location.length - 13) + urData;
-  document.getElementById("url").value = urData;
+  document.getElementById("url").value = fileUrl;
   let share = document.querySelectorAll("#share")[i];
   share.checked = true;
   ShareSwitch(i, fileId);
 }
 
+// download
+// const downloadFile = (fileUrl, fileName) => {
+  
+
+//   fetch(fileUrl, {
+//     method: "GET",
+//     headers: {
+//       "Content-Disposition": "attachment;"+fileName,
+//     },
+//   });
+// };
+function downloadFile(fileUrl, fileName) {
+  axios({
+        url: fileUrl,
+        method: 'GET',
+        responseType: 'blob'
+  })
+        .then((response) => {
+              const url = window.URL
+                    .createObjectURL(new Blob([response.data]));
+              const link = document.createElement('a');
+              link.href = url;
+              link.setAttribute('download', fileName);
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+        })
+}
 const ShareSwitch = (i, fileId) => {
   let share = document.querySelectorAll("#share")[i];
 
@@ -69,15 +83,16 @@ const ShareSwitch = (i, fileId) => {
     };
   }
 
-
-  
-  fetch("http://" + window.location.hostname +":8080"+ "/file/setShareState", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  fetch(
+    "http://" + window.location.hostname + ":8080" + "/file/setShareState",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 };
 //        copy
 const copy = () => {
@@ -95,9 +110,32 @@ const copy = () => {
 };
 
 function readSingleFile(e) {
-  const name = e[0].name;
+ const name = e[0].name;
   document.getElementById("file-label").textContent = name;
 }
+
+const uploadFile= ()=>{
+  var formData = new FormData();
+  var fileUpload = document.querySelector('#file');
+  formData.append("file", fileUpload.files[0]);
+  
+  axios.post('/file', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+  }).then(res=>{
+
+    document.getElementById('uploadFormId').style.display =  'none';
+    window.location.href = window.location.href;
+  })
+
+
+}
+
+const closeUpload = ()=>{
+  document.getElementById('uploadFormId').style.display =  'none';
+}
+
 
 // /////////////////
 

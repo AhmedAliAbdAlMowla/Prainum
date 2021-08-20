@@ -1,38 +1,19 @@
 const router = require("express").Router();
 const connectEnsureLogin = require("connect-ensure-login");
+const upload = require("../config/multer");
+const fileController = require("../controllers/files");
 
-const filesController = require("../controllers/files");
-
-// Upload One  file to db
-router.post(
-  "/upload",
-  filesController.multerUploader.single("file"),
-  filesController.fUpload
-);
-
-// Get All  file from db
 router.get(
-  "/gallery",connectEnsureLogin.ensureLoggedIn("../signIn"),
-  
-  filesController.fGetAll
+  "/gallery",
+  connectEnsureLogin.ensureLoggedIn("../signIn"),
+  fileController.getAll
 );
+// Upload file
+router.post("/", upload.single("file"), fileController.create);
 
-// Get One  file from db
-router.get("/:fileId", filesController.fGetOne);
+// Get All  
+router.delete("/:fileId", fileController.delete);
 
-// Delete file from db
-router.post("/del/:id", filesController.fDelete);
 
-// Download file from db
-router.get("/dow/:id", filesController.fDownload);
-
-// Share file
-router.get("/share/:userId/:fileId", filesController.fShare);
-// set file share state
-router.post(
-  "/setShareState",
-  connectEnsureLogin.ensureLoggedIn("/signIn"),
-  filesController.setShareState
-);
 
 module.exports = router;

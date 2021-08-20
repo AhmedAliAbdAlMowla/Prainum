@@ -44,7 +44,6 @@
       width: auto;
       height: 130px;
     }
-    
   </style>
   <!-- Favicon  -->
   <link rel="icon" href="/images/favicon.png" />
@@ -59,7 +58,7 @@
   </div>
   <!-- end of preloader -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  
+
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
@@ -68,7 +67,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
 
 
-    <a class="navbar-brand prainum-text" href="#">
+    <a class="navbar-brand prainum-text" href="/">
       <img src="/images/favicon.png" class="d-inline-block align-top" alt=""
         style="width: 30px !important ; height: 30px !important" />
       rainum
@@ -157,8 +156,9 @@
         <div class="card" id="uploadFormId" style="display: none;">
 
           <h1 class="text-center display-4 my-4">File Uploads</h1>
-          <form action="/file/upload" method="POST" enctype="multipart/form-data">
-            <div class="custom-file mb-3">
+          <form id="uploadForm" action='upload_file' role="form" method="post" enctype=multipart/form-data></form>
+          
+            <div class="custom-file mb-3" id="containerof_inputfile">
               <input type="file" name="file" id="file" class="custom-file-input" onchange="readSingleFile(this.files)"
                 required />
               <label for="file" class="custom-file-label" id="file-label">Choose
@@ -166,10 +166,10 @@
             </div>
 
             <div style="text-align: center">
-              <button type="submit" class="btn btn-success" style="width:40%; font-size: 13px;"><i class="fas fa-upload"
+              <button type="submit" class="btn btn-success" onclick="uploadFile()" style="width:40%; font-size: 13px;"><i class="fas fa-upload"
                   style="color: white; "></i> Upload</button>
-              <button class="btn btn-primary" onclick="document.getElementById('uploadFormId').style.display =  'none' "
-                style="width: 40%; font-size: 13px;" title="close"><i class="fas fa-times"></i>
+              <button class="btn btn-primary" 
+                style="width: 40%; font-size: 13px;"  onclick="closeUpload()" title="close"><i class="fas fa-times"></i>
                 Close</button>
             </div>
 
@@ -185,27 +185,29 @@
     </div>
 
 
-   
+
 
     <div class="row">
-     
 
-      <% if(files){ %> <% for( let i=0 ;i<files.length;i++) { %>
+
+      <% if(files){ %> <% 
+        const imageExt=["png", "jpeg", "jpg", "gif","bmp","tif","tiff","eps"];
+        for( let i=0 ;i<files.length;i++) { %>
 
       <div class="col-lg-3 col-md-4 col-sm-6" style="padding-top: 17px
               !important ;">
         <div class="card" style="padding: 10px;">
 
 
-          <% if(files[i].isImage) { %>
+          <% if(imageExt.includes(files[i].extension)) { %>
           <div class="card" style="padding: 10px;">
-            <%= files[i]._id%>
-            <img src="/file/<%= files[i]._id%>" alt="" />
+
+            <img src=<%= files[i].fileLink%> alt=""  />
 
             <div style="text-align: center">
               <p style="text-align: center; font-size: 20px; color:
                             rgb(4, 8, 4)">
-                <%=files[i].filename.substr(files[i].filename.length-12,files[i].filename.length)%>
+                <%=files[i].originalName+'.'+files[i].extension%>
               </p>
             </div>
 
@@ -213,33 +215,29 @@
             <div class="card" style="padding: 10px;">
               <img src="/images/unNoneCheckFile.svg" alt="" />
               <div style="text-align: center">
-                <p style="text-align: center; font-size: 30px;
+                <p style="text-align: center; font-size: 20px;
                                   color: rgb(4, 8, 4)">
-                  <%=files[i].filename.substr(files[i].filename.length-12,files[i].filename.length)%>
+                  <%=files[i].originalName+'.'+files[i].extension%>
                 </p>
               </div>
 
               <% } %>
               <div>
 
-                <!-- download -->
-                <form action="/file/dow/<%= files[i]._id %>" method="get" style="
-                                      display: inline !important;
-                                      margin: 0;
-                                      padding: 0;
-                                      width: 30%;
-                                      ">
+              
 
-                  <button type="submit" title="Download" class="btn" style="display: inline
+                <button type="submit" title="Download"
+                  onclick="downloadFile('<%= files[i].fileLink %>','<%=files[i].originalName+`.`+files[i].extension%>')"
+                  class="btn" style="display: inline
                                         !important;
                                         width: 25%;
                                         margin: 0 !important;">
-                    <i class="fas fa-download"></i>
-                  </button>
+                  <i class="fas fa-download"></i>
+                </button>
                 </form>
                 <!-- end download -->
                 <!--  link  -->
-                <button class="btn" onclick="pop('<%=i%>','<%= user%>','<%=files[i]._id %>')" title="Get link" style="
+                <button class="btn" onclick="pop('<%=i%>','<%= files[i].fileLink%>')" title="Get link" style="
                                       display: inline !important;
                                       width: 25%;
                                       margin: 0 !important;
@@ -249,7 +247,7 @@
                 <!-- end link -->
 
                 <!--  delete-->
-                <form action="/file/del/<%= files[i]._id %>" method="post" style="
+                <form action="/file/<%= files[i]._id %>?_method=DELETE" method="post" style="
                                       display: inline !important;
                                       margin: 0;
                                       padding: 0;
@@ -264,7 +262,7 @@
                 </form>
                 <!-- end delete -->
                 <!-- qrcode -->
-                <button class="btn" onclick="qrGen('<%=i%>','<%= user%>','<%= files[i]._id %>')" title="QrCode" style="display:
+                <button class="btn" onclick="qrGen('<%=i%>','<%= files[i].fileLink%>')" title="QrCode" style="display:
                                       inline !important;
                                       width: 25%;
                                       margin: 0 !important;"><i class="fas
@@ -277,10 +275,10 @@
                                       flex-wrap: wrap;
                                       justify-content: center;
                                       align-items: center;">
-                  <label style="font-size: 15px; color:
-                                        black ;"> File Share: </label>
+                  <!-- <label style="font-size: 15px; color:
+                                        black ;"> File Share: </label> -->
 
-                  <label class="switch">
+                  <!-- <label class="switch">
 
                     <% if(files[i].shareState) { %>
 
@@ -290,7 +288,7 @@
                     <% } %>
 
                     <span class="slider round"></span>
-                  </label>
+                  </label> -->
                 </div>
               </div>
               <!-- end share state switch -->
@@ -314,31 +312,31 @@
 
   </div>
 
-    <!-- Scripts -->
-    <script src="/js/jquery.min.js"></script>
-    <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="/js/popper.min.js"></script>
-    <!-- Popper tooltip library for Bootstrap -->
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- Bootstrap framework -->
-    <script src="/js/jquery.easing.min.js"></script>
-    <!-- jQuery Easing for smooth scrolling between anchors -->
-    <script src="/js/swiper.min.js"></script>
-    <!-- Swiper for image and text sliders -->
-    <script src="/js/jquery.magnific-popup.js"></script>
-    <!-- Magnific Popup for lightboxes -->
-    <script src="/js/validator.min.js"></script>
-    <!-- Validator.js - Bootstrap plugin that validates forms -->
+  <!-- Scripts -->
+  <script src="/js/jquery.min.js"></script>
+  <!-- jQuery for Bootstrap's JavaScript plugins -->
+  <script src="/js/popper.min.js"></script>
+  <!-- Popper tooltip library for Bootstrap -->
+  <script src="/js/bootstrap.min.js"></script>
+  <!-- Bootstrap framework -->
+  <script src="/js/jquery.easing.min.js"></script>
+  <!-- jQuery Easing for smooth scrolling between anchors -->
+  <script src="/js/swiper.min.js"></script>
+  <!-- Swiper for image and text sliders -->
+  <script src="/js/jquery.magnific-popup.js"></script>
+  <!-- Magnific Popup for lightboxes -->
+  <script src="/js/validator.min.js"></script>
+  <!-- Validator.js - Bootstrap plugin that validates forms -->
 
-    <!-- qr code -->
-    <script type="text/javascript" src="/js/qrcode.js"></script>
-   <!-- axios cdn -->
-    
-     <!-- gallery script -->
-    <script src="/js/gallery.js"></script>
-    
+  <!-- qr code -->
+  <script type="text/javascript" src="/js/qrcode.js"></script>
+  <!-- axios cdn -->
 
-   </script>
+  <!-- gallery script -->
+  <script src="/js/gallery.js"></script>
+
+
+  </script>
 
 </body>
 

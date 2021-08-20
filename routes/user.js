@@ -9,6 +9,5 @@ router.post("/signUp", userController.signUp);
 
 //  logout
 router.get("/signOut", userController.signOut);
-// change password
-router.post("/changePassword/:user", userController.changePassword);
+
 module.exports = router;
