@@ -51,7 +51,7 @@ exports.signUp = (req, res) => {
   } else {
     User.register(new User(req.body), req.body.password, (error, user) => {
       passport.authenticate("local")(req, res, () => {
-        res.redirect("/gallery");
+          res.redirect("/file/gallery");
       });
     });
   }
